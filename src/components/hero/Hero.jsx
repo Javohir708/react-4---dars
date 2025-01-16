@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { Toaster, toast } from 'sonner'
+import maleImage from "../../assets/male.png"
+import femaleImage from "../../assets/female.png"
+
 
 const Hero = () => {
   const firstNameRef = useRef(null)
@@ -17,13 +20,18 @@ const Hero = () => {
       if(!firstNameRef.current.value || !lastNameRef.current.value || !ageRef.current.value || !professionRef.current.value || !genderRef.current.value || !bioRef.current.value) {
           return toast.warning("Barcha maydonlarni to'ldiring!")
       }
+
+      if(genderRef === 'male') {
+        console.log();
+      }
+
     const post = {
         id: uuidv4(),
         firstName: firstNameRef.current.value,
         lastName: lastNameRef.current.value,
         age: ageRef.current.value,
         profession: professionRef.current.value,
-        gender: genderRef.current.value,
+        gender: genderRef.current.value.toLowerCase(),
         bio: bioRef.current.value,
     }
     setData((prev)=> ([... prev, post]))
@@ -56,7 +64,8 @@ const Hero = () => {
          {
             data?.map((item) => (
                 <div key={item.id} className='w-80 p-3 shadow-md text-center'>
-                    <h2>{item.gender}</h2>
+                    <img
+                src={item.gender === 'male' ? maleImage : femaleImage   } alt={item.gender} className="w-24 h-24 mx-auto rounded-full"/>
                     <h2>{item.firstName} {item.lastName}</h2>
                     <h3>Age: {item.age}</h3>
                     <h3>Profession: {item.profession}</h3>
