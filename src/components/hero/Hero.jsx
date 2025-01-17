@@ -17,11 +17,12 @@ const Hero = () => {
 
   const handleSubmit = (event) => {
       event.preventDefault()
-
+      
       if (!firstNameRef.current.value || !lastNameRef.current.value || !ageRef.current.value || !professionRef.current.value || !genderRef.current.value || !bioRef.current.value) {
-          return toast.warning("Barcha maydonlarni to'ldiring!")
+        return toast.warning("Barcha maydonlarni to'ldiring!")
       }
-
+      
+      
       if (edit) {
         console.log(firstNameRef.current.value)
         setData(prev => prev.map((item) =>
@@ -81,7 +82,7 @@ const Hero = () => {
           <input ref={professionRef} type="text" placeholder="Profession" className="w-full p-2 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
           <input ref={genderRef} type="text" placeholder="Gender: male or female" className="w-full p-2 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
           <input ref={bioRef} type="text" placeholder="Bio" className="w-full p-2 bg-white text-gray-900 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"/>
-          <button className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95 duration-300">Create</button>
+          <button className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 active:scale-95 duration-300">{edit ? "Save" : "Create"}</button>
         </form>
       </aside>
 
